@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malwa Event</title>
+  <meta name="description" content="A simple light red and white themed landing page." />
+  <style>
+    :root {
+      --red-50: #fff1f3;
+      --red-100: #ffe5e9;
+      --red-400: #ff6b81;
+      --red-500: #ff526d;
+      --red-700: #e03b57;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --bg: #ffffff;
+      --ring: rgba(255, 82, 109, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--red-100);
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .brand-badge {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--red-400), var(--red-700));
+      box-shadow: 0 4px 10px rgba(255, 82, 109, 0.35);
+    }
+
+    .nav-links {
+      display: none;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--red-500);
+      color: #fff;
+      box-shadow: 0 8px 18px var(--ring);
+    }
+
+    .btn-primary:hover {
+      background: var(--red-700);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: var(--red-100);
+      color: var(--text);
+    }
+
+    .btn-ghost:hover {
+      background: var(--red-50);
+      border-color: var(--red-400);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, var(--red-50), #fff);
+      border-bottom: 1px solid var(--red-100);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      padding: 48px 0 32px;
+    }
+
+    .hero-text h1 {
+      font-size: 34px;
+      line-height: 1.1;
+      margin: 0 0 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, var(--red-400), var(--red-700));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      max-width: 50ch;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background: #fff;
+      border: 1px solid var(--red-100);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.04),
+        0 8px 22px rgba(255, 82, 109, 0.08);
+    }
+
+    .stats {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .stat {
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: var(--red-50);
+      border: 1px solid var(--red-100);
+      font-weight: 600;
+      color: var(--red-700);
+    }
+
+    /* Features */
+    .section {
+      padding: 48px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .kicker {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--red-50);
+      border: 1px solid var(--red-100);
+      color: var(--red-700);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+    }
+
+    .section-header h2 {
+      margin: 10px 0 8px;
+      font-size: 26px;
+      letter-spacing: -0.3px;
+    }
+
+    .section-header p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .feature {
+      background: #fff;
+      border: 1px solid var(--red-100);
+      border-radius: 14px;
+      padding: 18px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 82, 109, 0.12);
+    }
+
+    .feature h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CTA */
+    .cta {
+      background: linear-gradient(180deg, #fff, var(--red-50));
+      border-top: 1px solid var(--red-100);
+      border-bottom: 1px solid var(--red-100);
+      padding: 36px 0;
+      text-align: center;
+    }
+
+    .cta h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+
+    .cta p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      padding: 20px 0 40px;
+      color: var(--muted);
+    }
+
+    .footer-line {
+      height: 1px;
+      background: var(--red-100);
+      margin-bottom: 14px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 14px;
+    }
+
+    .foot-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .foot-links a {
+      color: var(--muted);
+    }
+
+    .foot-links a:hover {
+      color: var(--red-700);
+    }
+
+    /* Responsive */
+    @media (min-width: 720px) {
+      .nav-links {
+        display: flex;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 36px;
+        padding: 72px 0 56px;
+      }
+
+      .hero-text h1 {
+        font-size: 44px;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .section-header h2 {
+        font-size: 30px;
+      }
+
+      .features {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#">
+        <span class="brand-badge" aria-hidden="true"></span>
+        Malwa Event
+      </a>
+      <span class="btn btn-ghost" aria-hidden="true">Lakshya: 2025</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1><span class="highlight">Malwa Institute of Technology, Indore</span></h1>
+          <p style="font-weight:700; color: var(--red-700); margin-bottom:8px;">Lakshya: 2025</p>
+          <p style="margin-bottom:0; font-size:18px;">Science Exhibition/Poster Presentation – Rules and Regulations</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Overview</span>
+          <h2>Science Exhibition / Poster Presentation</h2>
+          <p>Official guidelines and themes for Lakshya: 2025 at Malwa Institute of Technology, Indore.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="themes" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Theme</span>
+          <h2>Exhibition Themes</h2>
+          <p>Participants may choose from the following themes:</p>
+        </div>
+        <ul class="feature" style="max-width:800px; margin:0 auto; list-style: disc; padding-left:22px;">
+          <li>Climate Change</li>
+          <li>Man on Mars</li>
+          <li>Sustainable Life</li>
+          <li>Eco-Friendly Technology</li>
+          <li>Latest Technology and Advancement</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="guidelines" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">1</span>
+          <h2>1. General Guidelines</h2>
+        </div>
+        <ol class="feature" style="max-width:900px; margin:0 auto; padding-left:22px;">
+          <li>The exhibition is open to students of all grades as specified by the organizing committee.</li>
+          <li>Participant may take part as a team (Science projects maximum of 3 members per team). (For poster
+            presentation team size maximum 2 members.)</li>
+          <li>Every project/poster must be original and prepared by the participants themselves.</li>
+          <li>All exhibits must be approved by the science teacher or coordinator before submission.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="display" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">2</span>
+          <h2>2. Project Display and Presentation</h2>
+        </div>
+        <ol class="feature" style="max-width:900px; margin:0 auto; padding-left:22px;">
+          <li>Each exhibit should include:
+            <ul style="margin-top:8px; list-style: disc; padding-left:20px;">
+              <li>A model or demonstration,</li>
+              <li>A display chart/poster, and</li>
+              <li>A brief written report (150–300 words) explaining the concept, aim, materials used, procedure, and
+                conclusion.</li>
+            </ul>
+          </li>
+          <li>The project/poster must be labeled clearly with the title, participant names, class, and school name.
+            Students must bring decorative items/table cloth if they want to decorate their table.</li>
+          <li>Models can be working or non-working.</li>
+          <li>Each team will be given a table space (approx. 3 ft × 3 ft) and access to electricity (if requested in
+            advance).</li>
+          <li>Dangerous chemicals, explosives, open flames, or sharp tools are not allowed.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="time" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">3</span>
+          <h2>3. Time and Conduct</h2>
+        </div>
+        <ol class="feature" style="max-width:900px; margin:0 auto; padding-left:22px;">
+          <li>Participants must set up their exhibits one hour before the exhibition begins.</li>
+          <li>Each participant/team will have 3–5 minutes to explain their project/poster to the judges.</li>
+          <li>Participants should remain at their stalls throughout the exhibition to answer visitors' questions.</li>
+          <li>Proper decorum and discipline must be maintained at all times.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="judging-exhibition" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">4</span>
+          <h2>4. Judging Criteria – Science Exhibition</h2>
+          <p>Projects will be evaluated on the following basis:</p>
+        </div>
+        <div class="feature" style="max-width:900px; margin:0 auto;">
+          <ul style="list-style:none; padding:0; margin:0;">
+            <li
+              style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--red-100);">
+              <span>Scientific thought & creativity</span><strong>20</strong></li>
+            <li
+              style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--red-100);">
+              <span>Originality & innovation</span><strong>15</strong></li>
+            <li
+              style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--red-100);">
+              <span>Practical application / usefulness</span><strong>20</strong></li>
+            <li
+              style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--red-100);">
+              <span>Presentation & clarity</span><strong>15</strong></li>
+            <li
+              style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--red-100);">
+              <span>Working model / demonstration</span><strong>15</strong></li>
+            <li style="display:flex; justify-content:space-between; padding:6px 0;"><span>Overall
+                impression</span><strong>15</strong></li>
+          </ul>
+          <div style="margin-top:10px; font-weight:700; text-align:right; color:var(--red-700);">Total: 100 marks</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">5</span>
+          <h2>5. Awards and Recognition</h2>
+        </div>
+        <ol class="feature" style="max-width:900px; margin:0 auto; padding-left:22px;">
+          <li>Certificates will be given to all participants.</li>
+          <li>Prizes will be awarded for the Best Exhibit, Most Innovative Idea, and Best Presentation in each category.
+          </li>
+          <li>The judges' decision will be final and binding.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="safety" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">6</span>
+          <h2>6. Safety and Discipline</h2>
+        </div>
+        <ol class="feature" style="max-width:900px; margin:0 auto; padding-left:22px;">
+          <li>Participants must ensure safety in handling all materials and equipment.</li>
+          <li>Any project violating safety rules or school norms will be disqualified.</li>
+          <li>The organizing committee is not responsible for any loss or damage to exhibits.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="poster-specs" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">7</span>
+          <h2>7. Poster Specifications</h2>
+        </div>
+        <ol class="feature" style="max-width:900px; margin:0 auto; padding-left:22px;">
+          <li>Size: A3 / A2 / chart paper (as decided).</li>
+          <li>Medium: Hand-drawn posters using paints, crayons, sketch pens, or colored pencils.</li>
+          <li>Each poster must be an original creation of the participant(s).</li>
+          <li>Participants must bring the prepared posters with them.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="judging-poster" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">8</span>
+          <h2>8. Judging Criteria – Poster Presentation</h2>
+          <p>Posters will be evaluated based on:</p>
+        </div>
+        <ol class="feature" style="max-width:900px; margin:0 auto; padding-left:22px;">
+          <li>Creativity and originality – <strong>30%</strong></li>
+          <li>Relevance to the theme – <strong>25%</strong></li>
+          <li>Visual impact and presentation – <strong>20%</strong></li>
+          <li>Neatness and clarity – <strong>15%</strong></li>
+          <li>Message or slogan effectiveness – <strong>10%</strong></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="register" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="kicker">Register</span>
+          <h2>Be Part of Lakshya: 2025</h2>
+          <p>Submit your details to confirm participation in the Science Exhibition/Poster Presentation.</p>
+        </div>
+        <form id="registrationForm" class="feature" style="max-width: 680px; margin: 0 auto;">
+          <div style="display:grid; gap:12px; grid-template-columns:1fr;">
+            <label>
+              <span style="display:block; font-weight:600; margin-bottom:6px;">Name</span>
+              <input id="regName" name="name" type="text" required placeholder="Your full name"
+                style="width:100%; padding:10px 12px; border:1px solid var(--red-100); border-radius:10px; outline:none;" />
+            </label>
+            <label>
+              <span style="display:block; font-weight:600; margin-bottom:6px;">Phone number</span>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span
+                  style="padding:10px 12px; background:var(--red-50); border:1px solid var(--red-100); border-radius:10px; font-weight:600; color:var(--red-700); white-space:nowrap;">+91</span>
+                <input id="regPhone" name="phone" type="tel" required placeholder="9876543210" maxlength="10"
+                  pattern="[0-9]{10}"
+                  style="flex:1; padding:10px 12px; border:1px solid var(--red-100); border-radius:10px; outline:none;" />
+              </div>
+              <small style="display:block; margin-top:4px; color:var(--muted); font-size:13px;">Enter your 10-digit
+                mobile number</small>
+            </label>
+            <label>
+              <span style="display:block; font-weight:600; margin-bottom:6px;">Email</span>
+              <input id="regEmail" name="email" type="email" required placeholder="you@example.com"
+                style="width:100%; padding:10px 12px; border:1px solid var(--red-100); border-radius:10px; outline:none;" />
+            </label>
+            <div id="otpSection" style="display:none;">
+              <label>
+                <span style="display:block; font-weight:600; margin-bottom:6px;">Enter OTP</span>
+                <input id="regOtp" name="otp" type="text" required placeholder="Enter 6-digit OTP" maxlength="6"
+                  inputmode="numeric" pattern="[0-9]{6}"
+                  style="width:100%; padding:10px 12px; border:1px solid var(--red-100); border-radius:10px; outline:none;" />
+                <small style="display:block; margin-top:4px; color:var(--muted); font-size:13px;">OTP will be sent to
+                  your email address.</small>
+              </label>
+            </div>
+          </div>
+          <div style="margin-top:12px; display:flex; justify-content:flex-end; gap:8px;">
+            <button id="generateOtpBtn" class="btn btn-primary" type="button">Generate OTP</button>
+            <button id="validateOtpBtn" class="btn btn-primary" type="button" style="display:none;">Verify OTP &
+              Register</button>
+          </div>
+        </form>
+        <div id="registerMsg" style="max-width:680px; margin:10px auto 0; font-weight:600;"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-line"></div>
+      <div class="footer-inner">
+        <span>© <span id="year"></span> Malwa Event. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    (function () {
+      const form = document.getElementById('registrationForm');
+      const msg = document.getElementById('registerMsg');
+      const generateOtpBtn = document.getElementById('generateOtpBtn');
+      const validateOtpBtn = document.getElementById('validateOtpBtn');
+      const otpSection = document.getElementById('otpSection');
+      const regOtp = document.getElementById('regOtp');
+
+      let validationToken = null;
+
+      // Function to submit registration
+      async function submitRegistration() {
+        const name = document.getElementById('regName').value.trim();
+        const phone = document.getElementById('regPhone').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+
+        if (!name || !phone || !email) {
+          msg.textContent = 'Please fill all fields.';
+          msg.style.color = '#e03b57';
+          return false;
+        }
+
+        try {
+          const res = await fetch('/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, phone: '+91' + phone, email, validationToken })
+          });
+
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            throw new Error(data.message || 'Registration failed');
+          }
+
+          msg.textContent = 'Registration successful!';
+          msg.style.color = '#0f766e';
+          form.reset();
+          otpSection.style.display = 'none';
+          generateOtpBtn.style.display = 'inline-flex';
+          validateOtpBtn.style.display = 'none';
+          validationToken = null;
+          return true;
+        } catch (err) {
+          msg.textContent = err.message;
+          msg.style.color = '#e03b57';
+          return false;
+        }
+      }
+
+      if (!form) return;
+
+      // Generate OTP when user clicks "Generate OTP" button
+      generateOtpBtn.addEventListener('click', async function () {
+        msg.textContent = '';
+        const name = document.getElementById('regName').value.trim();
+        const phone = document.getElementById('regPhone').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+
+        if (!name || !phone || !email) {
+          msg.textContent = 'Please fill all fields before generating OTP.';
+          msg.style.color = '#e03b57';
+          return;
+        }
+
+        if (phone.length !== 10 || !/^[0-9]+$/.test(phone)) {
+          msg.textContent = 'Please enter a valid 10-digit phone number.';
+          msg.style.color = '#e03b57';
+          return;
+        }
+
+        try {
+          generateOtpBtn.disabled = true;
+          generateOtpBtn.textContent = 'Sending OTP...';
+
+          const res = await fetch('/api/otp/generate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone: '+91' + phone, email })
+          });
+
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data.message || 'Failed to send OTP');
+          }
+
+          otpSection.style.display = 'block';
+          generateOtpBtn.style.display = 'none';
+          validateOtpBtn.style.display = 'inline-flex';
+          regOtp.focus();
+
+          msg.textContent = 'OTP sent to your email! Please check your inbox.';
+          msg.style.color = '#0f766e';
+        } catch (err) {
+          msg.textContent = err.message;
+          msg.style.color = '#e03b57';
+        } finally {
+          generateOtpBtn.disabled = false;
+          generateOtpBtn.textContent = 'Generate OTP';
+        }
+      });
+
+      // Validate OTP and register
+      validateOtpBtn.addEventListener('click', async function () {
+        const phone = document.getElementById('regPhone').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const otp = regOtp.value.trim();
+
+        if (!otp || otp.length !== 6) {
+          msg.textContent = 'Please enter a valid 6-digit OTP.';
+          msg.style.color = '#e03b57';
+          return;
+        }
+
+        try {
+          validateOtpBtn.disabled = true;
+          validateOtpBtn.textContent = 'Verifying...';
+
+          const res = await fetch('/api/otp/validate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phone: '+91' + phone, email, otp })
+          });
+
+          const data = await res.json();
+          if (!res.ok) {
+            throw new Error(data.message || 'Invalid OTP');
+          }
+
+          validationToken = data.validationToken;
+          validateOtpBtn.textContent = 'Registering...';
+          await submitRegistration();
+        } catch (err) {
+          msg.textContent = err.message;
+          msg.style.color = '#e03b57';
+        } finally {
+          validateOtpBtn.disabled = false;
+          validateOtpBtn.textContent = 'Verify OTP & Register';
+        }
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        msg.textContent = 'Please verify OTP first.';
+        msg.style.color = '#e03b57';
+      });
+    })();
+  </script>
+</body>
+
+</html>

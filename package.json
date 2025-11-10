@@ -1,0 +1,27 @@
+{
+  "name": "mit-indore",
+  "version": "1.0.0",
+  "description": "Malwa Institute of Technology Science Exhibition Registration System",
+  "main": "api/index.js",
+  "scripts": {
+    "dev": "node backend/server.js",
+    "start": "node api/index.js",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.1.5",
+    "firebase-admin": "^12.0.0",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.5.1",
+    "nodemailer": "^7.0.10"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}
